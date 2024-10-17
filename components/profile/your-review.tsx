@@ -1,9 +1,10 @@
 'use client';
-import Link from 'next/link';
+import { useState } from 'react';
+import Link from 'next/link'; // Import Link dari next/link
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
-export default function PopularParfume() {
+
+export default function FavoriteParfume() {
   const perfumes = [
     {
       id: 1,
@@ -78,11 +79,10 @@ export default function PopularParfume() {
 
   return (
     <div className="w-full flex flex-col mt-32 ">
-      <h1 className="font-medium text-5xl text-gray-700 text-center mb-20" style={{ fontFamily: 'LibreBaskervilleRegular' }}>
-        Discover Your Signature Scent
-      </h1>
       <div className="flex justify-between items-center ml-10 mr-10">
-        <h2 className="text-xl font-medium text-gray-700">Popular Perfume</h2>
+        <h1 className="text-3xl font-md text-gray-700" style={{ fontFamily: 'GaramondRegular' }}>
+          Your Review
+        </h1>
         {perfumes.length >= 5 && (
           <button onClick={() => setShowAll(!showAll)} className="text-[#FF6F61] hover:underline text-sm">
             {showAll ? 'See Less' : 'See More'}

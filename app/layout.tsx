@@ -1,10 +1,8 @@
-import DeployButton from '@/components/deploy-button';
+import localFont from 'next/font/local';
 import { EnvVarWarning } from '@/components/env-var-warning';
 import HeaderAuth from '@/components/header-auth';
-import { ThemeSwitcher } from '@/components/theme-switcher';
 import { hasEnvVars } from '@/utils/supabase/check-env-vars';
 import { GeistSans } from 'geist/font/sans';
-import { ThemeProvider } from 'next-themes';
 import Link from 'next/link';
 import './globals.css';
 
@@ -21,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={GeistSans.className} suppressHydrationWarning>
       <body className="bg-gradient-to-bl from-[#FFD2CE] from-10% via-[#FFF1EF]  to-[#F7D4D4] text-foreground">
         <main className="min-h-screen flex flex-col items-center">
-          <div className="flex-1 w-full flex flex-col gap-20 items-center ">
+          <div className="flex-1 w-full flex flex-col gap-5 items-center ">
             <nav className="w-11/12 flex justify-center border-b border-b-[#FFBDB6] mt-3">
               <div className="w-full  flex justify-between items-center p-3 text-sm">
                 <img src="/logo.png" alt="logo" className="w-16 h-16" />

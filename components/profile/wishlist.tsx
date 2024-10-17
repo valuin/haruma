@@ -1,9 +1,9 @@
 'use client';
-import Link from 'next/link';
+import { useState } from 'react';
+import Link from 'next/link'; // Import Link dari next/link
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
-export default function PopularParfume() {
+export default function Wishlist() {
   const perfumes = [
     {
       id: 1,
@@ -32,42 +32,6 @@ export default function PopularParfume() {
       rating: 4.9,
       reviews: 100,
     },
-    {
-      id: 4,
-      name: 'Chanel',
-      brand: 'Bleu',
-      imgSrc: '/farhampton.png',
-      scentFamily: ['Woody', 'Aromatic'],
-      rating: 4.7,
-      reviews: 80,
-    },
-    {
-      id: 5,
-      name: 'Creed',
-      brand: 'Aventus',
-      imgSrc: '/farhampton.png',
-      scentFamily: ['Fruity', 'Musk'],
-      rating: 5.0,
-      reviews: 200,
-    },
-    {
-      id: 6,
-      name: 'Tom Ford',
-      brand: 'Oud Wood',
-      imgSrc: '/farhampton.png',
-      scentFamily: ['Woody', 'Oriental'],
-      rating: 4.6,
-      reviews: 60,
-    },
-    {
-      id: 7,
-      name: 'Jo Malone',
-      brand: 'Wood Sage & Sea Salt',
-      imgSrc: '/farhampton.png',
-      scentFamily: ['Herbal', 'Aquatic'],
-      rating: 4.8,
-      reviews: 95,
-    },
   ];
 
   // State untuk mengontrol apakah akan menampilkan semua parfum
@@ -78,11 +42,10 @@ export default function PopularParfume() {
 
   return (
     <div className="w-full flex flex-col mt-32 ">
-      <h1 className="font-medium text-5xl text-gray-700 text-center mb-20" style={{ fontFamily: 'LibreBaskervilleRegular' }}>
-        Discover Your Signature Scent
-      </h1>
       <div className="flex justify-between items-center ml-10 mr-10">
-        <h2 className="text-xl font-medium text-gray-700">Popular Perfume</h2>
+        <h1 className="text-3xl font-md text-gray-700" style={{ fontFamily: 'GaramondRegular' }}>
+          Wishlist
+        </h1>
         {perfumes.length >= 5 && (
           <button onClick={() => setShowAll(!showAll)} className="text-[#FF6F61] hover:underline text-sm">
             {showAll ? 'See Less' : 'See More'}
@@ -114,13 +77,6 @@ export default function PopularParfume() {
                 <h1 className="font-bold text-lg text-gray-900 hover:scale-105 hover:-translate-y-1 transition-transform">{perfume.brand}</h1>
               </Link>
               <p className="text-sm">{perfume.name}</p>
-              <div className="flex items-center mt-1">
-                {[...Array(5)].map((_, index) => (
-                  <FontAwesomeIcon key={index} icon={faStar} className={`text-yellow-500 h-4 ${index < Math.floor(perfume.rating) ? '' : 'opacity-50'}`} />
-                ))}
-                <span className="ml-2 text-gray-700 text-sm">{perfume.rating.toFixed(1)}</span>
-                <span className="ml-2 text-gray-700 text-sm">({perfume.reviews})</span>
-              </div>
             </div>
           </div>
         ))}

@@ -1,16 +1,23 @@
+
 import { Button } from '../ui/button';
 
 export default function HeroComp() {
   return (
-    <div className="w-full flex justify-between px-4 ">
+    <div className="w-full flex justify-between px-4 mt-10 ">
       {/* Heading on the right */}
       <div className="flex flex-col ml-10">
         {' '}
         <div>
           {' '}
-          <h1 className="font-medium text-8xl text-gray-700">Discover the </h1>
-          <h1 className="font-medium text-8xl text-gray-700">fragrance That </h1>
-          <h1 className="font-medium text-8xl text-gray-700">Defines You</h1>
+          <h1 className="font-medium text-8xl text-gray-700 mb-5 " style={{ fontFamily: 'LibreBaskervilleRegular' }}>
+            Discover the{' '}
+          </h1>
+          <h1 className="font-medium text-8xl text-gray-700 mb-5" style={{ fontFamily: 'LibreBaskervilleRegular' }}>
+            fragrance That{' '}
+          </h1>
+          <h1 className="font-medium text-8xl text-gray-700 mt-5 " style={{ fontFamily: 'LibreBaskervilleRegular' }}>
+            Defines You
+          </h1>
         </div>
         <div>
           {' '}

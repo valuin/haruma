@@ -6,7 +6,9 @@ import { Button } from '../ui/button';
 export default function LatestReviews() {
   return (
     <div className="flex flex-col mt-10 p-10">
-      <div className="text-3xl font-bold text-center text-gray-700">Latest Reviews</div>
+      <div className="text-5xl font-medium text-center text-gray-700" style={{ fontFamily: 'LibreBaskervilleRegular' }}>
+        Latest Reviews
+      </div>
       <div className="flex flex-row mt-10 justify-between h-full">
         <div className="flex flex-col text-gray-700 justify-center ">
           <p className="text-2xl">Share your thoughts or explore reviews</p>

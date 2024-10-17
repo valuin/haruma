@@ -67,3 +67,36 @@
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: 'LibreBaskervilleRegular';
+  src: url('/font/LibreBaskerville-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LibreBaskervilleBold';
+  src: url('/font/LibreBaskerville-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LibreBaskervilleItalic';
+  src: url('/font/LibreBaskerville-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'GaramondRegular';
+  src: url('/font/Garamond-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GaramondItalic';
+  src: url('/app/font/Garamond-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
