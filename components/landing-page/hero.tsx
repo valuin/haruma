@@ -1,9 +1,8 @@
-
 import { Button } from '../ui/button';
 
 export default function HeroComp() {
   return (
-    <div className="w-full flex justify-between px-4 mt-10 ">
+    <div className="w-full flex justify-between px-4 mt-10 ml-16">
       {/* Heading on the right */}
       <div className="flex flex-col ml-10">
         {' '}

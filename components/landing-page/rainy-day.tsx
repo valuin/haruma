@@ -50,7 +50,7 @@ export default function RainyDay() {
   const displayedPerfumes = showAll ? perfumes : perfumes.slice(0, 5);
 
   return (
-    <div className="w-full flex flex-col mt-32 ">
+    <div className="w-full flex flex-col mt-20 ">
       <div className="flex justify-between items-center ml-10 mr-10">
         <h1 className="text-xl font-medium text-gray-700">Perfect For Rainy Days</h1>
         {perfumes.length >= 5 && (
@@ -60,7 +60,7 @@ export default function RainyDay() {
         )}
       </div>
 
-      <div className="flex flex-row flex-wrap mt-5 ml-10 gap-10">
+      <div className="flex flex-row flex-wrap mt-5 ml-10 gap-16">
         {displayedPerfumes.map((perfume) => (
           <div key={perfume.id} className="p-5">
             {/* Hover effect hanya di area gambar */}

@@ -25,24 +25,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <img src="/logo.png" alt="logo" className="w-16 h-16" />
                 <div className="flex gap-14 items-center font-medium text-gray-700 ml-24">
                   <Link href={defaultUrl}>HOME</Link>
-                  <Link href={defaultUrl}>BRANDS</Link>
-                  <Link href={defaultUrl}>PERFUMES</Link>
-                  <Link href={defaultUrl}>CONTACT</Link>
+                  <Link href={'./brands'}>BRANDS</Link>
+                  <Link href={'./perfumes'}>PERFUMES</Link>
+                  <Link href={'./contact'}>CONTACT</Link>
                 </div>
                 {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
               </div>
             </nav>
             <div className="w-full ">{children}</div>
-
-            {/* <footer className="w-full flex items-center justify-center bg-[#E86558] mx-auto text-center text-xs gap-8 py-16">
-              <p>
-                Powered by{' '}
-                <a href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs" target="_blank" className="font-bold hover:underline" rel="noreferrer">
-                  Supabase
-                </a>
-              </p>
-              <ThemeSwitcher />
-            </footer> */}
           </div>
         </main>
       </body>

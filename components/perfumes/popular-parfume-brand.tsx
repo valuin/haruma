@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-export default function PopularParfume() {
+export default function PopularParfumeBrand() {
   const perfumes = [
     {
       id: 1,
@@ -74,23 +74,20 @@ export default function PopularParfume() {
   const [showAll, setShowAll] = useState(false);
 
   // Tentukan jumlah parfum yang akan ditampilkan
-  const displayedPerfumes = showAll ? perfumes : perfumes.slice(0, 5);
+  const displayedPerfumes = showAll ? perfumes : perfumes.slice(0, 4);
 
   return (
-    <div className="w-full flex flex-col my-20 ">
-      <h1 className="font-medium text-5xl text-gray-700 text-center mb-20" style={{ fontFamily: 'LibreBaskervilleRegular' }}>
-        Discover Your Signature Scent
-      </h1>
+    <div className="w-full flex flex-col mb-20 ">
       <div className="flex justify-between items-center ml-10 mr-10">
         <h2 className="text-xl font-medium text-gray-700">Popular Perfume</h2>
-        {perfumes.length >= 5 && (
-          <button onClick={() => setShowAll(!showAll)} className="text-[#FF6F61] hover:underline text-sm">
+        {/* {perfumes.length >= 4 && (
+          <button onClick={() => setShowAll(!showAll)} className="text-[#FF6F61] hover:underline text-md font-bold">
             {showAll ? 'See Less' : 'See More'}
           </button>
-        )}
+        )} */}
       </div>
 
-      <div className="flex flex-row flex-wrap mt-5 ml-10 gap-10">
+      <div className="flex flex-row flex-wrap mt-5 ml-20 gap-10">
         {displayedPerfumes.map((perfume) => (
           <div key={perfume.id} className="p-5">
             {/* Hover effect hanya di area gambar */}
