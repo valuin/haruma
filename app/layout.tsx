@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
               </div>
             </nav>
-            <div className="w-full ">{children}</div>
+            <div className="w-full">{children}</div>
           </div>
         </main>
       </body>

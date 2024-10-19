@@ -18,7 +18,7 @@ const secondRow = brands.slice(Math.ceil(brands.length / 2));
 const BrandCard = ({ image, name, href }: { image: string; name: string; href: string }) => {
   return (
     <Link href={href} passHref>
-      <figure className={cn('relative w-96 cursor-pointer overflow-hidden rounded-xl border p-8', 'bg-white hover:bg-gray-50')}>
+      <figure className={cn('relative w-96 rounded-xl p-8', 'bg-white hover:bg-gray-50')}>
         <div className="flex flex-col items-center">
           <img className="w-40 h-40 object-contain" alt={`${name} Logo`} src={image} />
         </div>
