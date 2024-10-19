@@ -4,11 +4,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent } from '@/components/ui/card';
-import { toast } from '@/hooks/use-toast';
 import { AiFillStar } from 'react-icons/ai'; // Import the star icon
 
 const items = [
@@ -42,17 +40,6 @@ export default function SidebarFilter() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
-
   // Helper function to render the correct number of stars
   const renderStars = (rating: number) => {
     return Array.from({ length: rating }, (_, index) => <AiFillStar key={index} className="text-yellow-400" />);
@@ -65,7 +52,7 @@ export default function SidebarFilter() {
           <h1 className="mt-5 font-semibold text-lg text-gray-500">Filter</h1>
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form className="space-y-6">
               {/* Checkbox Section */}
               <FormField
                 control={form.control}
