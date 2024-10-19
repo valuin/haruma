@@ -6,7 +6,7 @@ import { GeistSans } from 'geist/font/sans';
 import Link from 'next/link';
 import './globals.css';
 
-const defaultUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
+const defaultUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://haruma.vercel.app';
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="w-full  flex justify-between items-center p-3 text-sm">
                 <img src="/logo.png" alt="logo" className="w-16 h-16" />
                 <div className="flex gap-14 items-center font-medium text-gray-700 ml-24">
-                  <Link href={defaultUrl}>HOME</Link>
+                  <Link href={'/'}>HOME</Link>
                   <Link href={'./brands'}>BRANDS</Link>
                   <Link href={'./perfumes'}>PERFUMES</Link>
                   <Link href={'./contact'}>CONTACT</Link>
