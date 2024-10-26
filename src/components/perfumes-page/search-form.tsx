@@ -1,17 +1,26 @@
+'use client';
+
 import { Input } from '@/components/ui/input';
 import { ArrowRight, Search } from 'lucide-react';
 import Form from 'next/form';
+import { useSearchParams } from 'next/navigation';
 
 export default function SearchForm() {
+  const searchParams = useSearchParams();
+
   return (
-    <Form className="w-1/2" action="/perfumes">
+    <Form className="w-3/5" action="/perfumes">
       <div className="relative">
+        <label htmlFor="query" className="sr-only">
+          Query
+        </label>
         <Input
-          id="search"
+          defaultValue={searchParams.get('query') as string}
           className="peer pe-9 ps-9 bg-white"
           placeholder="Search..."
           type="search"
-          name="search"
+          name="query"
+          id="query"
         />
         <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">
           <Search size={16} strokeWidth={2} />

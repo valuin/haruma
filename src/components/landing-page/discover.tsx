@@ -16,7 +16,7 @@ export default function Discover() {
 
 function Popular() {
   return (
-    <div>
+    <div className="space-y-2">
       <div className="flex justify-between">
         <h1 className="text-2xl">Popular Pefumes</h1>
         <Link
@@ -63,7 +63,7 @@ function Popular() {
 
 function Perfect() {
   return (
-    <div>
+    <div className="space-y-2">
       <div className="flex justify-between">
         <h1 className="text-2xl">Perfect For Rainy Days</h1>
         <Link
