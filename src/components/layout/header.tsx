@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { createClient } from '@/lib/supabase/server';
 
 const navlinks = [
   {
@@ -20,7 +21,9 @@ const navlinks = [
   },
 ];
 
-export function Header() {
+export async function Header() {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getUser();
   return (
     <header className="w-full flex items-center justify-between border-b-2 border-red-300 pb-8">
       <Link href="/" aria-label="home link">
@@ -38,12 +41,20 @@ export function Header() {
         ))}
       </nav>
       <div className="space-x-3">
-        <Link href="/signup">
-          <Button variant="secondary">Sign Up</Button>
-        </Link>
-        <Link href="/login">
-          <Button>Log In</Button>
-        </Link>
+        {data.user ? (
+          <Link href="/dashboard">
+            <Button>Dashboard</Button>
+          </Link>
+        ) : (
+          <>
+            <Link href="/signup">
+              <Button variant="secondary">Sign Up</Button>
+            </Link>
+            <Link href="/login">
+              <Button>Log In</Button>
+            </Link>
+          </>
+        )}
       </div>
     </header>
   );

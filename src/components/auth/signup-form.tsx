@@ -21,32 +21,6 @@ export default function SignUpForm() {
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="space-y-2">
         <div className="space-y-1">
-          <Label htmlFor="name">Name</Label>
-          <Input
-            type="name"
-            id="name"
-            name="name"
-            placeholder="Enter your name"
-          />
-          {state?.errors?.name && (
-            <p className="text-sm text-red-500">{state.errors.name[0]}</p>
-          )}
-        </div>
-
-        <div className="space-y-1">
-          <Label htmlFor="phone">Phone Number</Label>
-          <Input
-            type="text"
-            id="phone"
-            name="phone"
-            placeholder="E.g: +62 123 4567 890"
-          />
-          {state?.errors?.phone && (
-            <p className="text-sm text-red-500">{state.errors.phone[0]}</p>
-          )}
-        </div>
-
-        <div className="space-y-1">
           <Label htmlFor="email">Email</Label>
           <Input
             type="email"
@@ -84,6 +58,7 @@ export default function SignUpForm() {
         {pending && <Loader2 className="animate-spin mr-1" />}
         <span>Sign Up</span>
       </Button>
+      {state?.message && <p className="text-destructive">{state.message}</p>}
     </form>
   );
 }

@@ -1,63 +1,19 @@
 'use server';
 
-import bcrypt from 'bcrypt';
+import {
+  LoginFormSchema,
+  LoginState,
+  SignUpFormSchema,
+  SignUpState,
+} from '@/lib/definitions';
+import { createClient } from '@/lib/supabase/server';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { z } from 'zod';
-
-const users = [
-  {
-    id: 1,
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    password: 'jd123',
-  },
-  {
-    id: 2,
-    name: 'Jane Doe',
-    email: 'janedoe@example.com',
-    password: 'jd123',
-  },
-];
-
-const SignUpFormSchema = z.object({
-  name: z
-    .string()
-    .min(2, { message: 'Name must be at least 2 characters long.' })
-    .max(50, { message: 'Name should not exceed 50 characters.' })
-    .trim(),
-  phone: z
-    .string()
-    .regex(
-      /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
-      'Please enter a valid phone number.'
-    )
-    .trim(),
-  email: z.string().email({ message: 'Invalid email address.' }).trim(),
-  password: z
-    .string()
-    .min(8, { message: 'Be at least 8 characters long.' })
-    .regex(/[a-zA-Z]/, { message: 'Contain at least one letter.' })
-    .regex(/[0-9]/, { message: 'Contain at least one number.' })
-    .trim(),
-});
-
-export type SignUpState =
-  | {
-      success: boolean;
-      message?: string | null;
-      errors?: {
-        name?: string[];
-        phone?: string[];
-        email?: string[];
-        password?: string[];
-      };
-    }
-  | undefined;
 
 export async function signup(prevState: SignUpState, formData: FormData) {
+  const supabase = await createClient();
+
   const validatedFields = SignUpFormSchema.safeParse({
-    name: formData.get('name'),
-    phone: formData.get('phone'),
     email: formData.get('email'),
     password: formData.get('password'),
   });
@@ -69,54 +25,26 @@ export async function signup(prevState: SignUpState, formData: FormData) {
     };
   }
 
-  const { name, email, password } = validatedFields.data;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const existingUser = users.filter((user) => user.email === email);
+  const { email, password } = validatedFields.data;
 
-  if (existingUser.length > 0) {
+  const { error } = await supabase.auth.signUp({
+    email: email,
+    password: password,
+  });
+
+  if (error) {
     return {
       success: false,
-      errors: {
-        email: ['Email already exists, please use a different email or login.'],
-      },
+      message: error.message,
     };
   }
-
-  console.log('User created');
-  console.log('Name:', name);
-  console.log('Email:', email);
-  console.log('Password:', hashedPassword);
 
   redirect('/');
 }
 
-const LoginFormSchema = z.object({
-  email: z
-    .string()
-    .email({
-      message: 'Please enter your email.',
-    })
-    .trim(),
-  password: z
-    .string()
-    .min(1, {
-      message: 'Please enter your password.',
-    })
-    .trim(),
-});
-
-export type LoginState =
-  | {
-      success: boolean;
-      message?: string | null;
-      errors?: {
-        email?: string[];
-        password?: string[];
-      };
-    }
-  | undefined;
-
 export async function login(prevState: LoginState, formData: FormData) {
+  const supabase = await createClient();
+
   const validatedFields = LoginFormSchema.safeParse({
     email: formData.get('email'),
     password: formData.get('password'),
@@ -130,31 +58,24 @@ export async function login(prevState: LoginState, formData: FormData) {
   }
 
   const { email, password } = validatedFields.data;
-  const existingUser = users.filter((user) => user.email === email);
 
-  if (!existingUser[0]) {
+  const { error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
+  });
+
+  if (error) {
     return {
       success: false,
-      errors: {
-        email: ['Email not found.'],
-      },
+      message: error.message,
     };
   }
 
-  const passwordMatch = existingUser[0].password === password;
-  if (!passwordMatch) {
-    return {
-      success: false,
-      errors: {
-        password: ['Incorrect password.'],
-      },
-    };
-  }
-
-  console.log('Login successful');
-  console.log('User:', existingUser[0].email);
-  console.log('Email:', email);
-  console.log('Password:', password);
-
+  revalidatePath('/', 'layout');
   redirect('/');
+}
+
+export async function signOut() {
+  const supabase = await createClient();
+  const { error } = await supabase.auth.signOut();
 }

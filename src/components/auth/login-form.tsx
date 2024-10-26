@@ -29,7 +29,7 @@ export default function LogInForm() {
             placeholder="Enter email"
           />
           {state?.errors?.email && (
-            <p className="text-sm text-red-500">{state.errors.email[0]}</p>
+            <p className="text-sm text-destructive">{state.errors.email[0]}</p>
           )}
         </div>
 
@@ -42,7 +42,9 @@ export default function LogInForm() {
             placeholder="Enter password"
           />
           {state?.errors?.password && (
-            <p className="text-sm text-red-500">{state.errors.password[0]}</p>
+            <p className="text-sm text-destructive">
+              {state.errors.password[0]}
+            </p>
           )}
         </div>
       </div>
@@ -51,6 +53,7 @@ export default function LogInForm() {
         {pending && <Loader2 className="animate-spin mr-1" />}
         <span>Login</span>
       </Button>
+      {state?.message && <p className="text-destructive">{state.message}</p>}
     </form>
   );
 }
