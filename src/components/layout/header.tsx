@@ -42,8 +42,8 @@ export async function Header() {
       </nav>
       <div className="space-x-3">
         {data.user ? (
-          <Link href="/dashboard">
-            <Button>Dashboard</Button>
+          <Link href="/profile">
+            <Button>Profile</Button>
           </Link>
         ) : (
           <>

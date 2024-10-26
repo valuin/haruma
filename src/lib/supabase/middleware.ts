@@ -1,7 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
-const protectedRoutes = ['/dashboard'];
+const protectedRoutes = ['/profile'];
 const publicRoutes = ['/login', '/signup'];
 
 export async function updateSession(request: NextRequest) {
@@ -42,8 +42,8 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (isPublicRoute && user && !path.startsWith('/dashboard')) {
-    return NextResponse.redirect(new URL('/dashboard', request.nextUrl));
+  if (isPublicRoute && user && !path.startsWith('/profile')) {
+    return NextResponse.redirect(new URL('/profile', request.nextUrl));
   }
 
   if (isProtectedRoute && !user) {

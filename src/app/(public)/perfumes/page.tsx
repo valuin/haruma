@@ -1,3 +1,9 @@
-export default function Home() {
-  return <h1>Perfumes page</h1>;
+import SearchForm from '@/components/perfumes-page/search-form';
+
+export default function Page() {
+  return (
+    <>
+      
+    </>
+  );
 }
