@@ -21,6 +21,16 @@ export default async function Page({
   searchParams: Promise<SearchParams>;
 }) {
   const { query } = await searchParams;
+
+  if (!query) {
+    return (
+      <div className="w-full space-y-16">
+        <Popular />
+        <Recommendation />
+      </div>
+    );
+  }
+
   const filteredItems = items.filter(
     (item) =>
       item.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -30,17 +40,17 @@ export default async function Page({
   if (filteredItems.length === 0) {
     return (
       <h1 className="font-serif font-bold text-2xl">
-        No results found for "{query}"
+        No results found for &quot;{query}&quot;
       </h1>
     );
   }
 
   return (
     <div className="w-full space-y-16">
-      {query ? (
+      {query && (
         <>
           <h2 className="font-serif font-bold text-2xl">
-            Results for "{query}"
+            Results for &quot;{query}&quot;
           </h2>
           <div className="grid grid-cols-5 gap-8">
             {filteredItems.map((item, i) => (
@@ -72,11 +82,6 @@ export default async function Page({
               </div>
             ))}
           </div>
-        </>
-      ) : (
-        <>
-          <Popular />
-          <Recommendation />
         </>
       )}
     </div>
