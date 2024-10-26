@@ -27,7 +27,7 @@ export function Header() {
       <Link href="/" aria-label="home link">
         <HarumaLogo />
       </Link>
-      <nav className="space-x-16 text-lg">
+      <nav className="space-x-16">
         {navlinks.map((link) => (
           <Link
             className="hover:text-primary"
@@ -48,8 +48,8 @@ export function Header() {
 export function HarumaLogo() {
   return (
     <svg
-      width="78"
-      height="78"
+      width="60"
+      height="60"
       viewBox="0 0 78 78"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -32,9 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${libre.variable} antialiased`}>
-        <div className="bg-gradient-to-r from-red-100 via-red-50 to-red-100 font-sans text-foreground flex flex-col items-center justify-center px-16 py-12">
+        <div className="bg-gradient-to-r from-red-100 via-red-50 to-red-100 font-sans text-foreground flex flex-col items-center justify-center px-16 py-12 gap-8">
           <Header />
-          <main className="min-h-[calc(100svh-403px)] w-full flex flex-col items-center gap-16 py-12">
+          <main className="min-h-[calc(100svh-403px)] w-full flex flex-col items-center gap-16 py-4">
             {children}
           </main>
         </div>
