@@ -1,6 +1,6 @@
+import AuthButton from '@/components/layout/auth-button';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { createClient } from '@/lib/supabase/server';
+import { Suspense } from 'react';
 
 const navlinks = [
   {
@@ -21,9 +21,7 @@ const navlinks = [
   },
 ];
 
-export async function Header() {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getUser();
+export function Header() {
   return (
     <header className="w-full flex items-center justify-between border-b-2 border-red-300 pb-8">
       <Link href="/" aria-label="home link">
@@ -40,22 +38,9 @@ export async function Header() {
           </Link>
         ))}
       </nav>
-      <div className="space-x-3">
-        {data.user ? (
-          <Link href="/profile">
-            <Button>Profile</Button>
-          </Link>
-        ) : (
-          <>
-            <Link href="/signup">
-              <Button variant="secondary">Sign Up</Button>
-            </Link>
-            <Link href="/login">
-              <Button>Log In</Button>
-            </Link>
-          </>
-        )}
-      </div>
+      <Suspense fallback={<p>Loading...</p>}>
+        <AuthButton />
+      </Suspense>
     </header>
   );
 }
