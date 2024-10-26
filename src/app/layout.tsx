@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Libre_Baskerville, Poppins } from 'next/font/google';
 import './globals.css';
+import { Header } from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
 
 const poppins = Poppins({
   weight: ['400', '600', '700'],
@@ -30,9 +32,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${libre.variable} antialiased`}>
-        {children}
+        <div className="bg-gradient-to-r from-red-100 via-red-50 to-red-100 font-sans text-foreground flex flex-col items-center justify-center px-16 py-12">
+          <Header />
+          <main className="min-h-[calc(100svh-403px)] w-full flex flex-col items-center gap-16 py-12">
+            {children}
+          </main>
+        </div>
+        <Footer />
       </body>
     </html>
   );
 }
-
