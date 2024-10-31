@@ -2,9 +2,7 @@ import SearchForm from '@/components/perfumes-page/search-form';
 import SidebarFilter from '@/components/perfumes-page/sidebar-filter';
 import { Suspense } from 'react';
 
-export default function Layout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <section className="w-full flex flex-col items-center gap-8">
       <h1 className="font-serif font-bold text-4xl">Explore Perfumes</h1>
