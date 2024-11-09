@@ -1,3 +1,16 @@
-export default function Page() {
-  return <h1>Brands page</h1>;
+import ItemsSection from '@/components/brands-page/item-section';
+import { Suspense } from 'react';
+
+export type SearchParams = {
+  query: string;
+};
+
+export default function Page({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  return (
+    <div className="w-full space-y-16">
+      <Suspense fallback={<p>Loading...</p>}>
+        <ItemsSection searchParams={searchParams} />
+      </Suspense>
+    </div>
+  );
 }
