@@ -39,7 +39,7 @@ export async function signup(prevState: SignUpState, formData: FormData) {
     };
   }
 
-  redirect('/');
+  redirect('/profile');
 }
 
 export async function login(prevState: LoginState, formData: FormData) {
@@ -72,10 +72,11 @@ export async function login(prevState: LoginState, formData: FormData) {
   }
 
   revalidatePath('/', 'layout');
-  redirect('/');
+  redirect('/profile');
 }
 
 export async function signOut() {
   const supabase = await createClient();
-  const { error } = await supabase.auth.signOut();
+  await supabase.auth.signOut();
+  redirect('/login');
 }

@@ -1,4 +1,5 @@
 import AuthButton from '@/components/layout/auth-button';
+import { Skeleton } from '@/components/ui/skeleton';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
@@ -38,7 +39,7 @@ export function Header() {
           </Link>
         ))}
       </nav>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Skeleton className="w-20 h-9" />}>
         <AuthButton />
       </Suspense>
     </header>
